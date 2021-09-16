@@ -1,0 +1,95 @@
+html{
+    font-family: 'Times New Roman', Times, serif;
+}
+.photo{
+    width: 100px;
+    height:100px;
+    border: 5px solid white;
+    border-radius: 20px 0px 20px 0px;
+    float: left;
+    box-sizing: border-box;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+body{
+    color: white;
+}
+.content{
+    box-sizing: content-box;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: blue;
+    height: 100%;
+    width:700px;
+    padding: 20px;
+    
+}
+.header,.footer{
+    background-color: darkgreen;
+    text-align: center;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header_text{
+    letter-spacing: 2px;
+    }
+.mtext{
+      font-size: 20px;
+    }
+.link{
+  text-align: center;
+}
+a{
+    color: red;
+    font-size: 20px;
+}
+span{
+    color: red;
+}
+
+h2{
+    word-spacing: 12px;
+    font-size: 30px;
+}
+h3{
+    font-size: 28px;
+    margin-top: 0px;
+    border-top-width: 0px; ;
+}
+li:nth-child(2){
+    letter-spacing: 5px;
+    color: springgreen;
+}
+li{
+    font-size: 20px;
+    margin-bottom: 1em;
+}
+table{
+    float: right;
+    width: 150px; 
+         height: 110px; 
+         border-style:solid;
+         border-color:white;
+		 border-width:1px;
+		 margin: 7px;
+}
+td 
+		 {
+            border-style:solid;
+		    border-width:1px;
+            border-color:white;
+		    text-align:center;
+   		    vertical-align:bottom;
+            color:white;
+         }
+p{
+    font-size: 20px;
+}        
+p:last-child{
+    text-decoration: line-through;
+}
+img{
+    float:right
+}
