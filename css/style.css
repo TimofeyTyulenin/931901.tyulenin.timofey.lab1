@@ -9,13 +9,16 @@
         padding-bottom: 50px;
 }
 .left_column{
-    float: left;
-    width: 200px;
+    display: inline-block;
+    position: absolute;
+    width: 25%;
     padding: 0 10px 0 10px;
     background-color:#C8FC98 ;
 }
 .content_column{
-     padding: 0 0 0 210px;
+    display: inline-block;
+    position: relative;
+    margin: 0 210px 0 25.5%;
 }
 .container{
     position: relative;
@@ -28,4 +31,11 @@
 }
 .footer a{
     color: #FDE95E;
+}
+.right_column{
+    float:right;
+    width: 200px;
+    padding: 0 10px 0 10px;
+    background-color:#FDE95E ;
+    margin-top: -126px;
 }
