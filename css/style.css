@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+.header{
+    background-color: darkgray;
+        display: flex;
+        padding: 0 10px 0 10px;
+        padding-bottom: 50px;
+}
+.left_column{
+    float: left;
+    width: 200px;
+    padding: 0 10px 0 10px;
+    background-color:#C8FC98 ;
+}
+.content_column{
+     padding: 0 0 0 210px;
+}
+.container{
+    position: relative;
+}
+.footer{
+    text-align: center;
+    justify-content: center;
+    background-color: black;
+    clear: both;
+}
+.footer a{
+    color: #FDE95E;
+}
