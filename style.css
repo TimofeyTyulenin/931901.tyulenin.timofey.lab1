@@ -1,0 +1,48 @@
+body{
+    font-size: 30px;
+    font-weight: 100;
+}
+/*.buttons{
+    display: grid;
+    grid-template-areas: 
+    "seven eight nine slash clear"
+    "four five six mult del"
+    "one two three minus equal"
+    "zero point plus";
+}*/
+.calc-screen{
+    border: 1px solid black;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    text-align: end;
+    position: relative;
+}
+p{
+    position: absolute;
+    right: 10px;
+    top: -40px;
+    font-size: 150%;
+}
+.buttons{
+    padding-top: 5px;
+    position: relative;
+}
+.calc{
+    padding: 20px;
+}
+.btn{
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    font-weight: 100;
+    margin: 3px 0px;
+}
+.zero{
+    width: 128px;
+}
+.equal{
+    height: 126px;
+    position: absolute;
+    right: 0;
+}
