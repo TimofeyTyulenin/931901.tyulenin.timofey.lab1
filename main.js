@@ -1,85 +1,109 @@
-document.addEventListener("DOMContentLoaded", () => scene());
-var k =0;
-var h =0;
+var n = 0;
+var deliting = 0;
+var nRow = [];
 
-function scene()
-{
-	var t = 0;
-	document.getElementById("scene").style.width=screen.width+'px';
-	b=screen.height-130;
-	document.getElementById("scene").style.height=b+'px';
-	document.getElementById("scene").onclick = function()
-	{
-		t = 1;
-		this.style.transitionDuration = 1 + 's';
-		this.style.bottom = 100+'%';
-	}
+function addRow(m){
+	return`
+			<tr class="${m}">
+				<td><input type="text" class="field1"></td>
+				<td><input type="number"  class="field2"></td>
+				<td><button class="up">&#8593;</button></td>
+				<td><button class="d">&#8595;</button></td>
+				<td><button class="del">х</button></td>
+			</tr>	
+        `
 	
-	document.getElementById("scene").onmouseover = function()
-	{
-		if (t!=1)
-		{
-		this.style.transitionDuration = 0.2 + 's';
-		this.style.bottom = 5+'%';
-	    }
+}
+
+function ad()
+{
+	n+=1;
+	deliting+=1;
+	var m = 'row' + n;
+	document.body.querySelector('table').insertAdjacentHTML("beforeend",  this.addRow(m));
+	nRow[n] = document.querySelector('.'+m)
+	nRow[Number(n)+1]=null;
+}
+
+function deleteButton(del)
+{
+	var i = del.parentElement.parentElement.className;
+	i = i.replace(/\D/g,'');
+	var j = nRow[n].className;
+	j = j.replace(/\D/g,'') - 1;
+	var m = n;
+	nRow.splice(i, 1);
+	document.body.querySelector('table').querySelector('.'+del.parentElement.parentElement.className).remove();
+	for (m;m>i;m--) {
+		nRow[m-1].className = 'row' + j;
+		j-=1;	
 	}
-	document.getElementById("scene").onmouseout = function()
-	{
-		if (t!=1) 
-		{
-		this.style.transitionDuration = 0.2 + 's';
-		this.style.bottom = 0+'%';
-	    }
-	}
-	document.querySelector(".lamp_align").onmousedown = function()
-	{
-		document.getElementById("lamp_switch").style.top = 45+'px';
-	}
-	document.querySelector(".lamp_align").onmouseup = function()
-	{
-		document.getElementById("lamp_switch").style.top = 25+'px';
+	n-=1;
+}
+
+function downButton(d)
+{
+	var i = d.parentElement.parentElement.className;
+	i = i.replace(/\D/g,'');
+	j = Number(i)+1;
+	if (nRow[j]!=null){
+		temp = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field1').value;
+		document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field1').value = document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field1').value;
+		document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field1').value = temp;
+		temp = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field2').value;
+		document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field2').value = document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field2').value;
+		document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field2').value = temp;
 	}
 }
 
-function lamp()
+function upButton(up)
 {
-	if (k === 0)
-	{
-		k = 1;
-		
-		var light = document.getElementById("triangle");
-		light.style.opacity = 0.5;
-		light.style.borderBottomColor = "yellow";
-		light.style.zIndex = 65;
-	}
-	else if (k === 1)
-	{
-		var light = document.getElementById("triangle");
-		k = 0;
-		light.style.opacity = 1;
-		light.style.borderBottomColor = "black";
-		light.style.zIndex = 40;		
+	var i = up.parentElement.parentElement.className;
+	i = i.replace(/\D/g,'');
+	j = i - 1;
+	if (nRow[j]!=null){
+		temp = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field1').value;
+		document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field1').value = document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field1').value;
+		document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field1').value = temp;
+		temp = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field2').value;
+		document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field2').value = document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field2').value;
+		document.body.querySelector('table').querySelector('.'+nRow[j].className).querySelector('.field2').value = temp;
 	}
 }
 
-function switching()
+function save()
 {
-	if (h === 0)
-	{
-		h = 1;	
-		var rabbit = document.getElementById("rabbit");
-		var bird = document.getElementById("dove");
-		rabbit.style.top = 50+"px";
-		setTimeout ('dove.style.top = -90+ "px"',1000);	
-		rabbit.style.display="none";
+	var saveUpload = [];
+	document.body.insertAdjacentHTML("beforeend",  `{`);
+	for (i=0;i<=n;i++){
+	saveUpload.field1 = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field1').value;
+	saveUpload.field2  = document.body.querySelector('table').querySelector('.'+nRow[i].className).querySelector('.field2').value;
+	document.body.insertAdjacentHTML("beforeend",  `"${saveUpload.field1}" : "${saveUpload.field2}"`);
+	if (i!=n) document.body.insertAdjacentHTML("beforeend",  ` , `);
 	}
-	else if (h === 1)
-	{
-		h = 0;
-		var rabbit = document.getElementById("rabbit");
-		var bird = document.getElementById("dove");
-		bird.style.top = 50+"px";
-		rabbit.style.display="inline";
-		setTimeout ('rabbit.style.top = -90+ "px"',1000);	
-	}
+	document.body.insertAdjacentHTML("beforeend",  `}`);
 }
+
+function listener()
+{
+	nRow[0]=document.querySelector('.row0');
+	nRow[-1]=null;
+		document.body.addEventListener("click", e => {
+                if (e.target.classList.contains("del")) {
+					this.deleteButton(e.target);
+            }
+        });
+		document.body.addEventListener("click", e => {
+                if (e.target.classList.contains("d")) {
+					this.downButton(e.target);
+            }
+        });
+		document.body.addEventListener("click", e => {
+                if (e.target.classList.contains("up")) {
+					this.upButton(e.target);
+            }
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => listener());
+
